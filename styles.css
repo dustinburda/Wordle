@@ -3,11 +3,14 @@
 }
 
 
-.board-positioner {
+.game {
     height: 98.5vh;
     width: 98.5vw;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 200px;
     /*border: 1px solid red;*/
 }
 
@@ -34,11 +37,53 @@
 
     border: 2px solid #d3d6da;
 
-    font-family: "Libre Franklin", sans-serif;;
+    font-family: "Libre Franklin", sans-serif;
     font-size: 32px;
     font-weight: 600;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    text-transform: uppercase;
 }
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    width: fit-content;
+
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.keyboard-key {
+    height: 58px;
+    width: 43px;
+    border-radius: 3px;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "Libre Franklin", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+
+    &.extended{
+        width: 65px;
+        font-size: 12px;
+    }
+
+    background-color: #d3d6da;
+}
+
+@key-frames {}
