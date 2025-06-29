@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+}
+
+
+.board-positioner {
+    height: 98.5vh;
+    width: 98.5vw;
+    display: flex;
+    justify-content: center;
+    /*border: 1px solid red;*/
+}
+
+.board {
+    margin-top: 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    height: fit-content;
+
+    /*border: 1px solid green;*/
+}
+
+.row {
+    display: flex;
+    gap: 5px;
+}
+
+.square {
+    height: 60px;
+    width: 60px;
+
+    border: 2px solid #d3d6da;
+
+    font-family: "Libre Franklin", sans-serif;;
+    font-size: 32px;
+    font-weight: 600;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
