@@ -1,22 +1,60 @@
-let wordLength = 5;
-let numGuesses = 6;
-let boardState = [...Array(numGuesses)].map(elem => Array(wordLength).fill(' '));
-
-let currentGuessIndex = 0;
-let currentGuessNum = 0;
-
-let board = document.querySelector(".board");
-
+const WORD_LENGTH = 5;
+const NUM_GUESSES = 6;
 
 class Board
 {
     #boardState;
     #board;
+    #currentGuessNum;
+    #currentGuessIndex;
     constructor() {
-        this.#boardState = [...Array(numGuesses)].map(elem => Array(wordLength).fill(' '));
+        this.#boardState = [...Array(NUM_GUESSES)].map(elem => Array(WORD_LENGTH).fill(' '));
         this.#board = document.querySelector(".board");
+        this.#currentGuessNum = 0;
+        this.#currentGuessIndex = 0;
     }
 
+    setCurrentCharacter(character) {
+        if (this.#currentGuessIndex === WORD_LENGTH || this.#currentGuessNum >= NUM_GUESSES)
+            return;
+
+        this.#boardState[this.#currentGuessNum][this.#currentGuessIndex] = character;
+        this.#currentGuessIndex++;
+
+        this.renderBoard();
+    }
+
+    deleteCurrentCharacter() {
+        if (this.#currentGuessIndex <= 0)
+            return;
+
+        this.#currentGuessIndex--;
+        this.#boardState[this.#currentGuessNum][this.#currentGuessIndex] = ' ';
+
+        this.renderBoard();
+    }
+
+    setCurrentGuess() {
+        if (this.#currentGuessNum >= NUM_GUESSES || this.#currentGuessIndex !== WORD_LENGTH)
+            return;
+
+        this.#currentGuessNum++;
+        this.#currentGuessIndex = 0;
+
+        this.renderBoard();
+    }
+
+    renderBoard() {
+        let rows = Array.from(this.#board.children);
+
+        for (let rowNum = 0; rowNum < rows.length; rowNum++) {
+            let col = Array.from(rows[rowNum].children);
+            for (let colNum = 0; colNum < col.length; colNum++)
+            {
+                col[colNum].textContent = this.#boardState[rowNum][colNum];
+            }
+        }
+    }
 }
 
 class Keyboard {
@@ -49,41 +87,14 @@ class Keyboard {
 }
 
 let keyBoard = new Keyboard();
+let board = new Board();
 
 document.querySelector('body').addEventListener('keydown', event => {
-    if ( (!['Backspace', 'Enter'].includes(event.key) && currentGuessIndex >= wordLength) || currentGuessNum >= numGuesses)
-        return;
-
     if (event.key === 'Backspace') {
-        if (currentGuessIndex <= 0)
-            return;
-
-        currentGuessIndex--;
-        boardState[currentGuessNum][currentGuessIndex] = ' ';
+        board.deleteCurrentCharacter();
     } else if (event.key === 'Enter') {
-        if (currentGuessIndex !== wordLength)
-            return;
-
-        currentGuessNum++;
-        currentGuessIndex = 0;
+        board.setCurrentGuess();
     } else if (event.key >= 'a' && event.key <= 'z'){
-        boardState[currentGuessNum][currentGuessIndex] = event.key;
-        currentGuessIndex++;
+        board.setCurrentCharacter(event.key);
     }
-
-    console.log(currentGuessIndex);
-
-    renderBoard();
 });
-
-function renderBoard() {
-    let rows = Array.from(board.children);
-
-    for (let rowNum = 0; rowNum < rows.length; rowNum++) {
-        let col = Array.from(rows[rowNum].children);
-        for (let colNum = 0; colNum < col.length; colNum++)
-        {
-            col[colNum].textContent = boardState[rowNum][colNum];
-        }
-    }
-}
