@@ -1,6 +1,7 @@
 const WORD_LENGTH = 5;
 const NUM_GUESSES = 6;
 
+import words from './Words.js';
 
 class Board
 {

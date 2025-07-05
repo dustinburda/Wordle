@@ -1,8 +1,8 @@
 import Board from './Board.js';
 import Keyboard from './Keyboard.js';
 
-let keyBoard = new Keyboard();
 let board = new Board();
+let keyBoard = new Keyboard(board);
 
 document.querySelector('body').addEventListener('keydown', event => {
     if (event.key === 'Backspace') {
