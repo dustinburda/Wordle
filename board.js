@@ -78,17 +78,29 @@ class Board
             return;
         }
 
-        debugger
         for (let index = 0; index < WORD_LENGTH; index++) {
             let currentCell = cellsInCurrentRow[index];
             let currentCorrectCharacter = this.#currentWord[index];
 
-            if (!this.#currentWord.includes(currentCell.textContent))
-                currentCell.style.backgroundColor = "gray";
-            else if (this.#currentWord.includes(currentCell.textContent) && currentCell.textContent !== currentCorrectCharacter)
-                currentCell.style.backgroundColor = "yellow";
-            else if (currentCell.textContent === currentCorrectCharacter)
-                currentCell.style.backgroundColor = "green";
+            currentCell.classList.remove('set-box');
+
+            // TODO FIX THIS
+            if (!this.#currentWord.includes(currentCell.textContent)) {
+                currentCell.style.backgroundColor = "#787c7e";
+                currentCell.style.borderColor = "#787c7e";
+                currentCell.style.color = "#fff";
+            }
+            else if (this.#currentWord.includes(currentCell.textContent) && currentCell.textContent !== currentCorrectCharacter) {
+                currentCell.style.backgroundColor = "#c9b458";
+                currentCell.style.borderColor = "#c9b458";
+                currentCell.style.color = "#fff";
+            }
+            else if (currentCell.textContent === currentCorrectCharacter) {
+                currentCell.style.backgroundColor = "#6aaa64";
+                currentCell.style.borderColor = "#6aaa64";
+                currentCell.style.color = "#fff";
+            }
+
 
         }
 
