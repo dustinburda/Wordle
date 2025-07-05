@@ -99,6 +99,8 @@
 
 .set-box {
     border-color: #878a8c;
+}
+.set-animation {
     animation: set-character 50ms;
 }
 
@@ -114,4 +116,30 @@
     100% {
         transform: scale(1.0);
     }
+}
+
+.invalid-guess {
+    transform: translateX(0px);
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translateX(-1px);
+    }
+
+    20%, 80% {
+        transform: translateX(2px);
+    }
+
+    30%, 50%, 70% {
+        transform: translateX(-4px);
+    }
+
+    40%, 60% {
+        transform: translateX(4px);
+    }
+
+
+
 }

@@ -1,0 +1,3 @@
+Jiggle letters in an invalid guess
+Flipping animation in a row for correct guess
+Setting green, yellow, gray cells in a guess

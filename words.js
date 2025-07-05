@@ -14856,4 +14856,4 @@ const words = [
     "zymic",
 ]
 
-export default words;
+export {words}
