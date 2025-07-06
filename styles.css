@@ -10,6 +10,8 @@
     flex-direction: column;
     align-items: center;
     gap: 40px;
+
+    perspective: 1000px;
 }
 
 .game {
